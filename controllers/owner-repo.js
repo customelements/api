@@ -5,9 +5,7 @@ var client = new elasticsearch.Client({
     host: process.env.ES_URL
 });
 
-// Busca item pelo ID
-module.exports = function(request, reply) {
-
+function controller(request, reply) {
     var result = {};
 
      Joi.validate(
@@ -45,10 +43,7 @@ module.exports = function(request, reply) {
             }
         };
 
-        client.search(
-            esObject
-        ).then(function (body) {
-
+        client.search(esObject).then(function (body) {
             var source = body.hits.hits;
             var resultSource = [];
 
@@ -67,5 +62,6 @@ module.exports = function(request, reply) {
             reply(result);
         });
     });
+}
 
-};
+module.exports = controller;

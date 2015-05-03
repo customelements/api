@@ -1,6 +1,3 @@
-var env = require('../config/env');
-
-// Verifica Token
 exports.token = function( headers ) {
     var result = {};
 

@@ -5,16 +5,13 @@ var client = new elasticsearch.Client({
     host: process.env.ES_URL
 });
 
-// Busca item pelo ID
-module.exports = function(request, reply) {
-
+function controller(request, reply) {
     var result = {};
 
      Joi.validate(
         { owner: request.params.owner },
         { owner: Joi.string() },
     function (err, value) {
-
         if (err) {
             reply({ type: 'error', message: 'invalid url' });
             return;
@@ -38,10 +35,7 @@ module.exports = function(request, reply) {
             }
         };
 
-        client.search(
-            esObject
-        ).then(function (body) {
-
+        client.search(esObject).then(function (body) {
             var source = body.hits.hits;
             var resultSource = [];
 
@@ -53,12 +47,12 @@ module.exports = function(request, reply) {
             result.total = body.hits.total;
             result.result = resultSource;
             reply( result );
-
         }, function (error) {
             result.type = 'error';
             result.message = error.message;
             reply(result);
         });
     });
+}
 
-};
+module.exports = controller;

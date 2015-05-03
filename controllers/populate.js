@@ -5,7 +5,7 @@ var client = new elasticsearch.Client({
     host: process.env.ES_URL
 });
 
-module.exports = function(req, res) {
+function controller(request, reply) {
 
 	console.log( req.body );
 
@@ -78,3 +78,5 @@ exports.validate = function( obj ) {
 
 	return { 'type': 'success' };
 }
+
+module.exports = controller;
