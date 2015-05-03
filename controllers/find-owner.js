@@ -1,19 +1,43 @@
-var es = require('../configs/es');
+var boom = require('boom');
 var joi = require('joi');
+var es = require('../configs/es');
 
 function controller(request, reply) {
-    var result = {};
+    controller.validate(request)
+        .then(function(result) {
+            console.log('[#validate] Done with promise');
+            return controller.findByOwner(result);
+        })
+        .then(function(result) {
+            console.log('[#findByOwner] Done with promise');
+            return reply(result);
+        })
+        .catch(reply);
+}
 
-     joi.validate(
-        { owner: request.params.owner },
-        { owner: joi.string() },
-    function (err, value) {
-        if (err) {
-            reply({ type: 'error', message: 'invalid url' });
-            return;
-        }
+controller.validate = function(request) {
+    return new Promise(function(resolve, reject) {
+        var params = {
+            owner: request.params.owner
+        };
 
-        var esObject = {
+        var schema = {
+            owner: joi.string()
+        };
+
+        joi.validate(params, schema, function (err, result) {
+            if (err) {
+                reject(boom.badRequest(err));
+            }
+
+            resolve(result);
+        });
+    });
+};
+
+controller.findByOwner = function(params) {
+    return new Promise(function(resolve, reject) {
+        var options = {
             index: 'customelements',
             type: 'repo',
             body: {
@@ -22,7 +46,7 @@ function controller(request, reply) {
                         filter: {
                             bool: {
                                 must: [
-                                    { term: { owner: value.owner.toLowerCase() }}
+                                    { term: { owner: params.owner.toLowerCase() }}
                                 ]
                             }
                         }
@@ -31,24 +55,21 @@ function controller(request, reply) {
             }
         };
 
-        es.search(esObject).then(function (body) {
-            var source = body.hits.hits;
-            var resultSource = [];
+        es.search(options).then(function(body) {
+            var results = [];
 
-            source.forEach(function( val ){
-                resultSource.push(val._source);
+            body.hits.hits.forEach(function(entry){
+                results.push(entry._source);
             });
 
-            result.type = 'success';
-            result.total = body.hits.total;
-            result.result = resultSource;
-            reply( result );
+            resolve({
+                total: body.hits.total,
+                results: results
+            });
         }, function (error) {
-            result.type = 'error';
-            result.message = error.message;
-            reply(result);
+            reject(boom.create(error.status, error.message));
         });
     });
-}
+};
 
 module.exports = controller;
