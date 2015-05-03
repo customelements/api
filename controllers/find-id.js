@@ -1,9 +1,8 @@
-var env = require('../config/env');
 var elasticsearch = require('elasticsearch');
 var Joi = require('joi');
 
 var client = new elasticsearch.Client({
-    host: env.ES_URL
+    host: process.env.ES_URL
 });
 
 // Busca item pelo ID

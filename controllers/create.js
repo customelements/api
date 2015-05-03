@@ -1,10 +1,9 @@
-var env = require('../config/env');
 var token = require('../utils/token').token;
 var elasticsearch = require('elasticsearch');
 var Joi = require('joi');
 
 var client = new elasticsearch.Client({
-    host: env.ES_URL
+    host: process.env.ES_URL
 });
 
 // Add item ES

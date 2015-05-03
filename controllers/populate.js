@@ -1,9 +1,8 @@
 var elasticsearch = require('elasticsearch');
 var validate = require('validate-obj');
-var env = require('../config/env');
 
 var client = new elasticsearch.Client({
-    host: env.ES_URL
+    host: process.env.ES_URL
 });
 
 module.exports = function(req, res) {

@@ -4,7 +4,7 @@ var env = require('../config/env');
 exports.token = function( headers ) {
     var result = {};
 
-    if ( headers.authorization ===  env.ES_TOKEN) {
+    if ( headers.authorization ===  process.env.ES_TOKEN) {
 	result.type = true,
 	result.message = 'valid token'
     }
