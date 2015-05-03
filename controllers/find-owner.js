@@ -1,16 +1,12 @@
-var elasticsearch = require('elasticsearch');
-var Joi = require('joi');
-
-var client = new elasticsearch.Client({
-    host: process.env.ES_URL
-});
+var es = require('../configs/es');
+var joi = require('joi');
 
 function controller(request, reply) {
     var result = {};
 
-     Joi.validate(
+     joi.validate(
         { owner: request.params.owner },
-        { owner: Joi.string() },
+        { owner: joi.string() },
     function (err, value) {
         if (err) {
             reply({ type: 'error', message: 'invalid url' });
@@ -35,7 +31,7 @@ function controller(request, reply) {
             }
         };
 
-        client.search(esObject).then(function (body) {
+        es.search(esObject).then(function (body) {
             var source = body.hits.hits;
             var resultSource = [];
 

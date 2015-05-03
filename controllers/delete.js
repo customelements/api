@@ -1,10 +1,6 @@
+var es = require('../configs/es');
+var joi = require('joi');
 var token = require('../utils/token').token;
-var elasticsearch = require('elasticsearch');
-var Joi = require('joi');
-
-var client = new elasticsearch.Client({
-    host: process.env.ES_URL
-});
 
 function controller(request, reply) {
     var elementId = request.params.id,
@@ -16,9 +12,9 @@ function controller(request, reply) {
         return;
     }
 
-    Joi.validate(
+    joi.validate(
         { id: elementId },
-        { id: Joi.number() },
+        { id: joi.number() },
     function (err, value) {
         if (err) {
             reply(err);
@@ -31,7 +27,7 @@ function controller(request, reply) {
             id: elementId,
         };
 
-        client.delete(esObject).then(function (body) {
+        es.delete(esObject).then(function (body) {
             result.type = 'success';
             result.result = body;
             reply( result );

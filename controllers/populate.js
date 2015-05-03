@@ -1,9 +1,5 @@
-var elasticsearch = require('elasticsearch');
+var es = require('../configs/es');
 var validate = require('validate-obj');
-
-var client = new elasticsearch.Client({
-    host: process.env.ES_URL
-});
 
 function controller(request, reply) {
 
@@ -33,7 +29,7 @@ function controller(request, reply) {
 
 exports.insert = function( obj ) {
 	return new Promise(function(resolve, reject) {
-		client.create({
+		es.create({
 	          index: 'customelements',
 	          type: 'repo',
 	          id: obj.id,

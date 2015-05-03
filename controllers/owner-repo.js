@@ -1,21 +1,17 @@
-var elasticsearch = require('elasticsearch');
-var Joi = require('joi');
-
-var client = new elasticsearch.Client({
-    host: process.env.ES_URL
-});
+var es = require('../configs/es');
+var joi = require('joi');
 
 function controller(request, reply) {
     var result = {};
 
-     Joi.validate(
+     joi.validate(
         {
             owner: request.params.owner,
             repo : request.params.repo
         },
         {
-            owner: Joi.string(),
-            repo : Joi.string()
+            owner: joi.string(),
+            repo : joi.string()
         },
     function (err, value) {
 
@@ -43,7 +39,7 @@ function controller(request, reply) {
             }
         };
 
-        client.search(esObject).then(function (body) {
+        es.search(esObject).then(function (body) {
             var source = body.hits.hits;
             var resultSource = [];
 
