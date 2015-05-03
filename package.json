@@ -5,7 +5,8 @@
   "description": "An interface to consume and update data on ElasticSearch",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "lab tests"
   },
   "dependencies": {
     "boom": "^2.7.1",
@@ -16,6 +17,10 @@
     "joi": "^6.0.4",
     "newrelic": "^1.18.5",
     "validate-obj": "^0.8.4"
+  },
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "lab": "^5.8.0"
   },
   "engines": {
     "node": "0.12",
