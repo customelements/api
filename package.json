@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "api",
+  "version": "0.0.0",
+  "description": "An interface to consume and update data on ElasticSearch",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "elasticsearch": "^3.1.3",
+    "good": "^5.1.2",
+    "good-console": "^4.1.0",
+    "hapi": "^8.2.0",
+    "joi": "^6.0.4",
+    "validate-obj": "^0.8.4"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/customelements/api.git"
+  }
+}
