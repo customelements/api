@@ -19,8 +19,8 @@ module.exports = function(request, reply) {
     }
 
     Joi.validate(
-        { id: elementId }, 
-        { id: Joi.number() }, 
+        { id: elementId },
+        { id: Joi.number() },
     function (err, value) {
 
             if ( err ) {

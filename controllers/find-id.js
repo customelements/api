@@ -12,8 +12,8 @@ module.exports = function(request, reply) {
         result = {};
 
     Joi.validate(
-        { id: id }, 
-        { id: Joi.number() }, 
+        { id: id },
+        { id: Joi.number() },
     function (err, value) {
 
             if ( err ) {
@@ -30,13 +30,13 @@ module.exports = function(request, reply) {
             client.get(
                 esObject
             ).then(function (body) {
-                
+
                     result.type = 'success';
                     result.result = body._source;
                     reply( result );
 
             }, function (error) {
-                
+
                     result.type = 'error';
                     result.message = error.message;
                     reply(result);

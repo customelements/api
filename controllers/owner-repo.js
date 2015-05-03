@@ -11,7 +11,7 @@ module.exports = function(request, reply) {
     var result = {};
 
      Joi.validate(
-        { 
+        {
             owner: request.params.owner,
             repo : request.params.repo
         },
