@@ -1,15 +1,15 @@
 var boom = require('boom');
 var joi = require('joi');
-var es = require('../configs/es');
+var es = require('../../../configs/es');
 
 function controller(request, reply) {
     controller.validate(request)
         .then(function(result) {
             console.log('[#validate] Done with promise');
-            return controller.findByOwner(result);
+            return controller.findByID(result);
         })
         .then(function(result) {
-            console.log('[#findByOwner] Done with promise');
+            console.log('[#findByID] Done with promise');
             return reply(result);
         })
         .catch(reply);
@@ -18,11 +18,11 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
-            owner: request.params.owner
+            id: request.params.id
         };
 
         var schema = {
-            owner: joi.string()
+            id: joi.number()
         };
 
         joi.validate(params, schema, function (err, result) {
@@ -35,37 +35,16 @@ controller.validate = function(request) {
     });
 };
 
-controller.findByOwner = function(params) {
+controller.findByID = function(params) {
     return new Promise(function(resolve, reject) {
         var options = {
             index: 'customelements',
             type: 'repo',
-            body: {
-                query: {
-                    filtered: {
-                        filter: {
-                            bool: {
-                                must: [
-                                    { term: { owner: params.owner.toLowerCase() }}
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
+            id: params.id
         };
 
-        es.search(options).then(function(body) {
-            var results = [];
-
-            body.hits.hits.forEach(function(entry){
-                results.push(entry._source);
-            });
-
-            resolve({
-                total: body.hits.total,
-                results: results
-            });
+        es.get(options).then(function(body) {
+            resolve(body._source);
         }, function (error) {
             reject(boom.create(error.status, error.message));
         });

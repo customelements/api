@@ -1,6 +1,6 @@
-var es = require('../configs/es');
+var es = require('../../../configs/es');
 var joi = require('joi');
-var token = require('../utils/token').token;
+var token = require('../../../utils/token').token;
 
 function controller(request, reply) {
     var element = JSON.parse(request.payload),

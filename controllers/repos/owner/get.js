@@ -1,15 +1,15 @@
 var boom = require('boom');
 var joi = require('joi');
-var es = require('../configs/es');
+var es = require('../../../configs/es');
 
 function controller(request, reply) {
     controller.validate(request)
         .then(function(result) {
             console.log('[#validate] Done with promise');
-            return controller.findByID(result);
+            return controller.findByOwner(result);
         })
         .then(function(result) {
-            console.log('[#findByID] Done with promise');
+            console.log('[#findByOwner] Done with promise');
             return reply(result);
         })
         .catch(reply);
@@ -18,11 +18,11 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
-            id: request.params.id
+            owner: request.params.owner
         };
 
         var schema = {
-            id: joi.number()
+            owner: joi.string()
         };
 
         joi.validate(params, schema, function (err, result) {
@@ -35,16 +35,37 @@ controller.validate = function(request) {
     });
 };
 
-controller.findByID = function(params) {
+controller.findByOwner = function(params) {
     return new Promise(function(resolve, reject) {
         var options = {
             index: 'customelements',
             type: 'repo',
-            id: params.id
+            body: {
+                query: {
+                    filtered: {
+                        filter: {
+                            bool: {
+                                must: [
+                                    { term: { owner: params.owner.toLowerCase() }}
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
         };
 
-        es.get(options).then(function(body) {
-            resolve(body._source);
+        es.search(options).then(function(body) {
+            var results = [];
+
+            body.hits.hits.forEach(function(entry){
+                results.push(entry._source);
+            });
+
+            resolve({
+                total: body.hits.total,
+                results: results
+            });
         }, function (error) {
             reject(boom.create(error.status, error.message));
         });
