@@ -38,8 +38,10 @@ curl -X GET search.customelements.io/id/1
 Creates repository by id.
 
 ```bash
-curl -X POST search.customelements.io/id/1
+curl -X POST search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
+
+Where `dXNlcjpwYXNz` is actually Heroku's API token.
 
 ```js
 {
@@ -54,8 +56,10 @@ curl -X POST search.customelements.io/id/1
 Updates repository by id.
 
 ```bash
-curl -X PUT search.customelements.io/id/1
+curl -X PUT search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
+
+Where `dXNlcjpwYXNz` is actually Heroku's API token.
 
 ```js
 {
@@ -70,8 +74,10 @@ curl -X PUT search.customelements.io/id/1
 Deletes repository by id.
 
 ```bash
-curl -X DELETE search.customelements.io/id/1
+curl -X DELETE search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
+
+Where `dXNlcjpwYXNz` is actually Heroku's API token.
 
 ```js
 {

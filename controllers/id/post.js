@@ -1,9 +1,14 @@
 var boom = require('boom');
 var joi = require('joi');
 var es = require('../../configs/es');
+var token = require('../../utils/token');
 
 function controller(request, reply) {
-    controller.validate(request)
+    token.authorize(request)
+        .then(function(result) {
+            console.log('[#token.authorize] Done with promise');
+            return controller.validate(result);
+        })
         .then(function(result) {
             console.log('[#validate] Done with promise');
             return controller.createByID(result);
