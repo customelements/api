@@ -42,7 +42,9 @@ curl -X POST search.customelements.io/id/1
 ```
 
 ```js
-TODO
+{
+    "created": true
+}
 ```
 
 ---
