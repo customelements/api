@@ -20,14 +20,14 @@ curl -X GET search.customelements.io/id/1
 
 ```js
 {
-    name: "aaa-form-controls",
-    owner: "Will-in-BC",
-    url: "https://github.com/Will-in-BC/aaa-form-controls",
-    owner_url: "https://github.com/Will-in-BC",
-    description: "A polymer element that provides a forms control for CRUD (Create, Retrieve, Update, Delete)",
-    forks: 0,
-    stars: 0,
-    created: "2014-12-03T14:47:50Z"
+    "name": "aaa-form-controls",
+    "owner": "Will-in-BC",
+    "url": "https://github.com/Will-in-BC/aaa-form-controls",
+    "owner_url": "https://github.com/Will-in-BC",
+    "description": "A polymer element that provides a forms control for CRUD (Create, Retrieve, Update, Delete)",
+    "forks": 0,
+    "stars": 0,
+    "created": "2014-12-03T14:47:50Z"
 }
 ```
 
@@ -70,7 +70,16 @@ curl -X GET search.customelements.io/name/zenorocha/voice-elements
 ```
 
 ```js
-TODO
+{
+    "name": "voice-elements",
+    "owner": "zenorocha",
+    "url": "https://github.com/zenorocha/voice-elements",
+    "owner_url": "https://github.com/zenorocha",
+    "description": "Web Component wrapper to the Web Speech API, that allows you to do voice recognition and speech synthesis using Polymer",
+    "forks": 154,
+    "stars": 971,
+    "created": "2014-04-16T00:48:46Z"
+}
 ```
 
 ---
