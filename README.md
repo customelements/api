@@ -58,7 +58,9 @@ curl -X PUT search.customelements.io/id/1
 ```
 
 ```js
-TODO
+{
+    "updated": true
+}
 ```
 
 ---
