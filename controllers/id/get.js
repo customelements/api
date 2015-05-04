@@ -1,6 +1,6 @@
 var boom = require('boom');
 var joi = require('joi');
-var es = require('../../../configs/es');
+var es = require('../../configs/es');
 
 function controller(request, reply) {
     controller.validate(request)

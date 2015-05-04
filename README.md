@@ -10,12 +10,12 @@ Built with [Node](http://nodejs.org/) and [Hapi](http://hapijs.com/). Hosted on 
 
 ## API endpoints
 
-### GET `/:id`
+### GET `/id/:id`
 
-Finds repositories by ElasticSearch's id.
+Finds repository by id.
 
 ```bash
-curl -X GET search.customelements.io/1
+curl -X GET search.customelements.io/id/1
 ```
 
 ```js
@@ -31,12 +31,56 @@ curl -X GET search.customelements.io/1
 }
 ```
 
-### GET `/repos/:owner`
+---
 
-Finds repositories by GitHub owner.
+### POST `/id/:id`
+
+Creates repository by id.
 
 ```bash
-curl -X GET search.customelements.io/repos/zenorocha
+curl -X POST search.customelements.io/id/1
+```
+
+```js
+TODO
+```
+
+---
+
+### PUT `/id/:id`
+
+Updates repository by id.
+
+```bash
+curl -X POST search.customelements.io/id/1
+```
+
+```js
+TODO
+```
+
+---
+
+### GET `/name/:owner/:repo`
+
+Finds repository by owner and repo.
+
+```bash
+curl -X GET search.customelements.io/name/zenorocha/voice-elements
+```
+
+```js
+TODO
+```
+
+---
+
+### GET `/owner/:owner`
+
+Finds repositories by owner.
+
+```bash
+curl -X GET search.customelements.io/owner/zenorocha
 ```
 
 ```js
@@ -57,3 +101,7 @@ curl -X GET search.customelements.io/repos/zenorocha
     ]
 }
 ```
+
+## License
+
+[MIT License](http://webcomponentsorg.mit-license.org/) © WebComponents.org

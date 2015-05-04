@@ -8,32 +8,32 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/repo/{id}',
-        handler: require('./controllers/repo/id/get.js')
+        path: '/id/{id}',
+        handler: require('./controllers/id/get.js')
     },
     {
         method: 'POST',
-        path: '/repo/{id}',
-        handler: require('./controllers/repo/id/post.js')
+        path: '/id/{id}',
+        handler: require('./controllers/id/post.js')
     },
     {
         method: 'PUT',
-        path: '/repo/{id}',
-        handler: require('./controllers/repo/id/put.js')
+        path: '/id/{id}',
+        handler: require('./controllers/id/put.js')
     },
     {
         method: 'DELETE',
-        path: '/repo/{id}',
-        handler: require('./controllers/repo/id/delete.js')
+        path: '/id/{id}',
+        handler: require('./controllers/id/delete.js')
     },
     {
         method: 'GET',
-        path: '/repo/{owner}/{repo}',
-        handler: require('./controllers/repo/name/get.js')
+        path: '/name/{owner}/{repo}',
+        handler: require('./controllers/name/get.js')
     },
     {
         method: 'GET',
-        path: '/repos/{owner}',
-        handler: require('./controllers/repos/owner/get.js')
+        path: '/owner/{owner}',
+        handler: require('./controllers/owner/get.js')
     }
 ];
