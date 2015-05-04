@@ -52,11 +52,27 @@ TODO
 Updates repository by id.
 
 ```bash
-curl -X POST search.customelements.io/id/1
+curl -X PUT search.customelements.io/id/1
 ```
 
 ```js
 TODO
+```
+
+---
+
+### DELETE `/id/:id`
+
+Deletes repository by id.
+
+```bash
+curl -X DELETE search.customelements.io/id/1
+```
+
+```js
+{
+    "found": true
+}
 ```
 
 ---
