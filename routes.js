@@ -2,9 +2,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/',
-        handler: function(request, reply) {
-            return reply().code(200);
-        }
+        handler: require('./controllers/get.js')
     },
     {
         method: 'GET',

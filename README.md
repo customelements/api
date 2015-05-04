@@ -10,6 +10,20 @@ Built with [Node](http://nodejs.org/) and [Hapi](http://hapijs.com/). Hosted on 
 
 ## API endpoints
 
+### GET `/?q=:term`
+
+Searches for a specific term and returns a paginated result.
+
+```bash
+curl -X GET search.customelements.io/?q=polymer
+```
+
+```js
+TODO
+```
+
+---
+
 ### GET `/id/:id`
 
 Finds repository by id.
