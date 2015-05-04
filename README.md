@@ -32,7 +32,7 @@ Requests `fetch.customelements.io` and then update ElasticSearch's data.
 curl -X PUT search.customelements.io -H "Authorization: dXNlcjpwYXNz"
 ```
 
-Where `dXNlcjpwYXNz` is actually Heroku's API token.
+Where `dXNlcjpwYXNz` is actually a secret API token.
 
 ```js
 TODO
@@ -71,7 +71,7 @@ Creates repository by id.
 curl -X POST search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
-Where `dXNlcjpwYXNz` is actually Heroku's API token.
+Where `dXNlcjpwYXNz` is actually a secret API token.
 
 ```js
 {
@@ -89,7 +89,7 @@ Updates repository by id.
 curl -X PUT search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
-Where `dXNlcjpwYXNz` is actually Heroku's API token.
+Where `dXNlcjpwYXNz` is actually a secret API token.
 
 ```js
 {
@@ -107,7 +107,7 @@ Deletes repository by id.
 curl -X DELETE search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
-Where `dXNlcjpwYXNz` is actually Heroku's API token.
+Where `dXNlcjpwYXNz` is actually a secret API token.
 
 ```js
 {
