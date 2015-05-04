@@ -5,6 +5,11 @@ module.exports = [
         handler: require('./controllers/get.js')
     },
     {
+        method: 'PUT',
+        path: '/',
+        handler: require('./controllers/put.js')
+    },
+    {
         method: 'GET',
         path: '/id/{id}',
         handler: require('./controllers/id/get.js')

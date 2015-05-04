@@ -24,6 +24,22 @@ TODO
 
 ---
 
+### PUT `/`
+
+Requests `fetch.customelements.io` and then update ElasticSearch's data.
+
+```bash
+curl -X PUT search.customelements.io -H "Authorization: dXNlcjpwYXNz"
+```
+
+Where `dXNlcjpwYXNz` is actually Heroku's API token.
+
+```js
+TODO
+```
+
+---
+
 ### GET `/id/:id`
 
 Finds repository by id.
