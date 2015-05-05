@@ -57,17 +57,18 @@ controller.find = function(params) {
     }
 
     es.search(options).then(function(body) {
-      var results = [];
+      var results = [],
+          repos = {}
 
       for(var i = 0; i < body.hits.hits.length; i++) {
         results.push(body.hits.hits[i]._source);
       }
 
-      var repos = {
-        'total': body.hits.total,
-        'results': results
-      }
+      // Defaults values
+      repos.total = body.hits.total;
+      repos.results = results;
 
+      // is not /
       if (  showPages ) {
         repos.page = parseInt(params.page, 10);
         repos.pages = Math.ceil(body.hits.total / params.perPage);
