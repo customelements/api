@@ -23,8 +23,8 @@ controller.validate = function(request) {
 
     var schema = {
         q: joi.string().label('search query').required(),
-        page: joi.number().default(1),
-        perPage: joi.number().default(50)
+        page: joi.number().min(1).default(1),
+        perPage: joi.number().min(1).max(50).default(50)
     };
 
     joi.validate(params, schema, function(err, result) {
