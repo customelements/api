@@ -33,6 +33,10 @@ controller.insert = function( obj ) {
 				console.log( error );
       });
 	}
+
+	console.log( 'Insert Done' );
+
+	return 'Insert Done';
 }
 
 module.exports = controller;
