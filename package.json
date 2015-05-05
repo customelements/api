@@ -1,8 +1,5 @@
 {
   "private": true,
-  "name": "search",
-  "version": "0.0.0",
-  "description": "An interface to consume and update data on ElasticSearch",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
