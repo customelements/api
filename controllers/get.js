@@ -16,18 +16,18 @@ function controller(request, reply) {
 controller.validate = function(request) {
   return new Promise(function(resolve, reject) {
     var params = {
-        term: request.query.q,
+        q: request.query.q,
         page: request.query.page,
         perPage: request.query.perPage
     };
 
     var schema = {
-        term: joi.string(),
-        page: joi.number(),
-        perPage: joi.number()
+        q: joi.string().label('search query').required(),
+        page: joi.number().default(1),
+        perPage: joi.number().default(50)
     };
 
-    joi.validate(params, schema, function (err, result) {
+    joi.validate(params, schema, function(err, result) {
       if (err) {
         reject(boom.badRequest(err));
       }
@@ -38,42 +38,34 @@ controller.validate = function(request) {
 };
 
 controller.find = function(params) {
-  return new Promise(function(resolve, reject){
-    var page = params.page || 1,
-        perPage = params.perPage || 50,
-        term = params.term || null;
-
+  return new Promise(function(resolve, reject) {
     var options = {
       index: 'customelements',
       type: 'repo',
       sort: 'github.stargazers_count:desc',
-      size: perPage,
-      from: (page - 1) * perPage,
+      size: params.perPage,
+      from: (params.page - 1) * params.perPage,
+      q: params.q
     };
 
-    if ( term ) {
-      options.q = term;
-    }
-
     es.search(options).then(function(body) {
-      var source = [];
+      var results = [];
 
-      for( var i = 0; i < body.hits.hits.length; i++) {
-        source.push( body.hits.hits[i]._source );
+      for(var i = 0; i < body.hits.hits.length; i++) {
+        results.push(body.hits.hits[i]._source);
       }
 
       resolve({
         'total': body.hits.total,
-        'page': parseInt(page, 10),
-        'pages': Math.ceil(body.hits.total / perPage),
-        'surce': source
+        'page': parseInt(params.page, 10),
+        'pages': Math.ceil(body.hits.total / params.perPage),
+        'results': results
       });
-
     }, function (error) {
       reject(boom.create(error.status, error.message));
     });
 
   });
-}
+};
 
 module.exports = controller;
