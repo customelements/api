@@ -22,9 +22,9 @@ controller.validate = function(request) {
     };
 
     var schema = {
-        q: joi.string().label('search query').required(),
+        q: joi.string(),
         page: joi.number().min(1).default(1),
-        perPage: joi.number().min(1).max(50).default(50)
+        perPage: joi.number().min(1).max(50).default(25)
     };
 
     joi.validate(params, schema, function(err, result) {
@@ -39,14 +39,22 @@ controller.validate = function(request) {
 
 controller.find = function(params) {
   return new Promise(function(resolve, reject) {
+    var showPages = true;
+
     var options = {
       index: 'customelements',
       type: 'repo',
       sort: 'github.stargazers_count:desc',
       size: params.perPage,
-      from: (params.page - 1) * params.perPage,
-      q: params.q
     };
+
+    if ( params.q ) {
+      options.q = params.q
+      options.from = (params.page - 1) * params.perPage
+    }
+    else {
+      showPages = false;
+    }
 
     es.search(options).then(function(body) {
       var results = [];
@@ -55,12 +63,18 @@ controller.find = function(params) {
         results.push(body.hits.hits[i]._source);
       }
 
-      resolve({
+      var repos = {
         'total': body.hits.total,
-        'page': parseInt(params.page, 10),
-        'pages': Math.ceil(body.hits.total / params.perPage),
         'results': results
-      });
+      }
+
+      if (  showPages ) {
+        repos.page = parseInt(params.page, 10);
+        repos.pages = Math.ceil(body.hits.total / params.perPage);
+      }
+
+      resolve(repos);
+
     }, function (error) {
       reject(boom.create(error.status, error.message));
     });
