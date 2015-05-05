@@ -1,3 +1,4 @@
+var boom = require('boom');
 var es = require('../configs/es');
 var joi = require('joi');
 
@@ -45,7 +46,7 @@ controller.find = function(params) {
     var options = {
       index: 'customelements',
       type: 'repo',
-      sort: 'stars:desc',
+      sort: 'github.stargazers_count:desc',
       size: perPage,
       from: (page - 1) * perPage,
     };
