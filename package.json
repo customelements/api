@@ -3,7 +3,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "lab tests"
+    "test": "lab tests -l -v"
   },
   "dependencies": {
     "boom": "^2.7.1",
