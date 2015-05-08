@@ -18,25 +18,23 @@ controller.insert = function( obj ) {
 	for(var index in obj) {
 	  var attr = obj[index];
 
-			es.create({
-        index: 'customelements',
-        type: 'repo',
-        id: attr.github.id,
-        body: attr
-      }).then(function (body) {
+		es.create({
+			index: 'customelements',
+			type: 'repo',
+			id: attr.github.id,
+			body: attr
+		}).then(function (body) {
 
-        if (body.created) {
-          console.log( attr.github.id + ' Inserted' );
-        }
+			if (body.created) {
+				console.log( attr.github.id + ' Inserted' );
+			}
 
-      }, function (error) {
-				console.log( error );
-      });
+		}, function (error) {
+			console.log( error );
+		});
+
 	}
 
-	console.log( 'Insert Done' );
-
-	return 'Insert Done';
 }
 
 module.exports = controller;

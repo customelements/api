@@ -43,5 +43,10 @@ module.exports = [
         method: 'GET',
         path: '/populate',
         handler: require('./controllers/populate.js')
+    },
+    {
+        method: 'GET',
+        path: '/sync',
+        handler: require('./controllers/put.js')
     }
 ];
