@@ -44,7 +44,7 @@ controller.find = function(params) {
     var options = {
       index: 'customelements',
       type: 'repo',
-      sort: 'github.stargazers_count:desc',
+      sort: 'stargazers_count:desc',
       size: params.perPage,
     };
 

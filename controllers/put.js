@@ -33,7 +33,7 @@ controller.exists = function(repo, request) {
         es.exists({
             index: 'customelements',
             type: 'repo',
-            id: repo.github.id
+            id: repo.id
         }).then(function(exists) {
             if (!exists) {
                 resolve(controller.create(repo, request));
@@ -51,13 +51,13 @@ controller.create = function(repo, request) {
         es.create({
             index: 'customelements',
             type: 'repo',
-            id: repo.github.id,
+            id: repo.id,
             body: repo
         }).then(function(body) {
-            request.log(['#create'], 'Creation succeed: ' + repo.github.full_name);
+            request.log(['#create'], 'Creation succeed: ' + repo.name + '/' + repo.owner);
             resolve(repo);
         }, function (error) {
-            request.log(['#create'], 'Creation failed: ' + repo.github.full_name);
+            request.log(['#create'], 'Creation failed: ' + repo.name + '/' + repo.owner);
             reject(boom.wrap(error));
         });
     });
@@ -68,15 +68,15 @@ controller.update = function(repo, request) {
         es.update({
             index: 'customelements',
             type: 'repo',
-            id: repo.github.id,
+            id: repo.id,
             body: {
                 doc: repo
             }
         }).then(function(body) {
-            request.log(['#update'], 'Update succeed: ' + repo.github.full_name);
+            request.log(['#update'], 'Update succeed: ' + repo.name + '/' + repo.owner);
             resolve(repo);
         }, function (error) {
-            request.log(['#update'], 'Update failed: ' + repo.github.full_name);
+            request.log(['#update'], 'Update failed: ' + repo.name + '/' + repo.owner);
             reject(boom.wrap(error));
         });
     });
