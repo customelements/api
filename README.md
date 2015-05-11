@@ -10,16 +10,39 @@ Built with [Node](http://nodejs.org/) and [Hapi](http://hapijs.com/). Hosted on 
 
 ## API endpoints
 
-### GET `/?q=:term`
+### GET `/`
 
 Searches for a specific term and returns a paginated result.
 
+| params | type | default | description |
+| --- | --- | --- | --- |
+| q | string | | Search query |
+| page | number | 1 | Current page |
+| perPage | number | 30 | Items per page |
+
 ```bash
-curl -X GET search.customelements.io/?q=polymer
+curl -X GET search.customelements.io
 ```
 
 ```js
-TODO
+{
+    "total":373,
+    "page":1,
+    "pages":13,
+    "results":[
+        {
+            "id":18821483,
+            "name":"voice-elements",
+            "owner":"zenorocha",
+            "description":"Web Component wrapper to the Web Speech API, that allows you to do voice recognition and speech synthesis using Polymer",
+            "created_at":"2014-04-16T00:48:46Z",
+            "updated_at":"2015-05-07T08:15:17Z",
+            "stargazers_count":1017,
+            "forks_count":170
+        },
+        {...}
+    ]
+}
 ```
 
 ---
