@@ -1,0 +1,32 @@
+{
+  "repo": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "name": {
+        "type": "string"
+      },
+      "owner": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "date",
+        "format": "dateOptionalTime"
+      },
+      "pushed_at": {
+        "type": "date",
+        "format": "dateOptionalTime"
+      },
+      "stargazers_count": {
+        "type": "long"
+      },
+      "forks_count": {
+        "type": "long"
+      }
+    }
+  }
+}
