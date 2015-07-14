@@ -18,5 +18,10 @@ module.exports = [
         method: 'GET',
         path: '/repos/{ownerID}',
         handler: require('./controllers/repos/owner/get.js')
+    },
+    {
+        method: 'GET',
+        path: '/repos/{ownerID}/{repoID}',
+        handler: require('./controllers/repos/repo/get.js')
     }
 ];
