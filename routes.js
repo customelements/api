@@ -6,8 +6,8 @@ module.exports = [
     },
     {
         method: 'PUT',
-        path: '/repos',
-        handler: require('./controllers/repos/put.js')
+        path: '/sync/{type}',
+        handler: require('./controllers/sync/type/put.js')
     },
     {
         method: 'GET',
