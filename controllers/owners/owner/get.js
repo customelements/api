@@ -18,11 +18,11 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
-            ownerID: request.params.ownerID
+            owner: request.params.owner
         };
 
         var schema = {
-            ownerID: joi.number()
+            owner: joi.string()
         };
 
         joi.validate(params, schema, function (err, result) {
@@ -40,11 +40,23 @@ controller.find = function(params) {
         var options = {
             index: 'customelements',
             type: 'owner',
-            id: params.ownerID
+            body: {
+                query: {
+                    filtered: {
+                        filter: {
+                            bool: {
+                                must: [
+                                    { term: { 'login.original': params.owner }}
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
         };
 
-        es.get(options).then(function(body) {
-            resolve(body._source);
+        es.search(options).then(function(body) {
+            resolve(body.hits.hits[0]._source);
         }, function (error) {
             reject(boom.create(error.status, error.message));
         });

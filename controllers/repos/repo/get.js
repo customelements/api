@@ -18,13 +18,13 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
-            ownerID: request.params.ownerID,
-            repoID: request.params.repoID
+            owner: request.params.owner,
+            repo: request.params.repo
         };
 
         var schema = {
-            ownerID: joi.number(),
-            repoID: joi.number()
+            owner: joi.string(),
+            repo: joi.string()
         };
 
         joi.validate(params, schema, function (err, result) {
@@ -48,8 +48,8 @@ controller.find = function(params) {
                         filter: {
                             bool: {
                                 must: [
-                                    { term: { 'owner.id': params.ownerID }},
-                                    { term: { 'id': params.repoID }}
+                                    { term: { 'owner.login': params.owner }},
+                                    { term: { 'name.original': params.repo }}
                                 ]
                             }
                         }

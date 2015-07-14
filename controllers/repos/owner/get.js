@@ -18,11 +18,11 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
-            ownerID: request.params.ownerID
+            owner: request.params.owner
         };
 
         var schema = {
-            ownerID: joi.number()
+            owner: joi.string()
         };
 
         joi.validate(params, schema, function (err, result) {
@@ -46,7 +46,7 @@ controller.find = function(params) {
                         filter: {
                             bool: {
                                 must: [
-                                    { term: { 'owner.id': params.ownerID }}
+                                    { term: { 'owner.login': params.owner }}
                                 ]
                             }
                         }

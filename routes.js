@@ -11,17 +11,17 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/owners/{ownerID}',
+        path: '/owners/{owner}',
         handler: require('./controllers/owners/owner/get.js')
     },
     {
         method: 'GET',
-        path: '/repos/{ownerID}',
+        path: '/repos/{owner}',
         handler: require('./controllers/repos/owner/get.js')
     },
     {
         method: 'GET',
-        path: '/repos/{ownerID}/{repoID}',
+        path: '/repos/{owner}/{repo}',
         handler: require('./controllers/repos/repo/get.js')
     }
 ];
