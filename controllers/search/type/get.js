@@ -1,5 +1,5 @@
 var boom = require('boom');
-var es = require('../../configs/es');
+var es = require('../../../configs/es');
 var joi = require('joi');
 
 function controller(request, reply) {
@@ -18,13 +18,15 @@ controller.validate = function(request) {
         var params = {
             q: request.query.q,
             page: request.query.page,
-            perPage: request.query.perPage
+            perPage: request.query.perPage,
+            type: request.params.type
         };
 
         var schema = {
             q: joi.string(),
             page: joi.number().min(1).default(1),
-            perPage: joi.number().min(1).max(1500).default(30)
+            perPage: joi.number().min(1).max(1500).default(30),
+            type: joi.string().required()
         };
 
         joi.validate(params, schema, function(err, result) {
@@ -41,8 +43,7 @@ controller.find = function(params) {
     return new Promise(function(resolve, reject) {
         var options = {
             index: 'customelements',
-            type: 'repo',
-            sort: 'stargazers_count:desc',
+            type: params.type.substr(0, params.type.length - 1),
             q: params.q,
             size: params.perPage,
             from: (params.page - 1) * params.perPage

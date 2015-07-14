@@ -1,8 +1,8 @@
 module.exports = [
     {
         method: 'GET',
-        path: '/repos',
-        handler: require('./controllers/repos/get.js')
+        path: '/search/{type}',
+        handler: require('./controllers/search/type/get.js')
     },
     {
         method: 'PUT',
