@@ -16,17 +16,21 @@ function controller(request, reply) {
 controller.validate = function(request) {
     return new Promise(function(resolve, reject) {
         var params = {
+            type: request.params.type,
             q: request.query.q,
             page: request.query.page,
             perPage: request.query.perPage,
-            type: request.params.type
+            sort: request.query.sort,
+            order: request.query.order
         };
 
         var schema = {
+            type: joi.string(),
             q: joi.string(),
             page: joi.number().min(1).default(1),
             perPage: joi.number().min(1).max(1500).default(30),
-            type: joi.string().required()
+            sort: joi.string().default('id'),
+            order: joi.string().default('asc')
         };
 
         joi.validate(params, schema, function(err, result) {
@@ -46,7 +50,8 @@ controller.find = function(params) {
             type: params.type.substr(0, params.type.length - 1),
             q: params.q,
             size: params.perPage,
-            from: (params.page - 1) * params.perPage
+            from: (params.page - 1) * params.perPage,
+            sort: params.sort + ':' + params.order
         };
 
         es.search(options).then(function(body) {
