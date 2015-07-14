@@ -11,6 +11,11 @@ module.exports = [
     },
     {
         method: 'GET',
+        path: '/owners/{ownerID}',
+        handler: require('./controllers/owners/owner/get.js')
+    },
+    {
+        method: 'GET',
         path: '/id/{id}',
         handler: require('./controllers/id/get.js')
     },
