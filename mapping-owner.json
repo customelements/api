@@ -1,0 +1,42 @@
+{
+    "owner": {
+        "properties": {
+            "id": {
+                "type": "long"
+            },
+            "login": {
+                "type": "multi_field",
+                "fields": {
+                    "searchable": {
+                        "type": "string"
+                    },
+                    "original": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    }
+                }
+            },
+            "avatar_url": {
+                "type": "string"
+            },
+            "type": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "company": {
+                "type": "string"
+            },
+            "blog": {
+                "type": "string"
+            },
+            "location": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
+            }
+        }
+    }
+}
