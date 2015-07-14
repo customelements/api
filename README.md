@@ -1,8 +1,8 @@
 # Search
 
-[![Build Status](http://img.shields.io/travis/customelements/search/master.svg?style=flat)](https://travis-ci.org/customelements/search)
-[![Dependencies Status](http://img.shields.io/david/customelements/search.svg?style=flat)](https://david-dm.org/customelements/search)
-[![DevDependencies Status](http://img.shields.io/david/dev/customelements/search.svg?style=flat)](https://david-dm.org/customelements/search#info=devDependencies)
+[![Build Status](http://img.shields.io/travis/customelements/api/master.svg?style=flat)](https://travis-ci.org/customelements/api)
+[![Dependencies Status](http://img.shields.io/david/customelements/api.svg?style=flat)](https://david-dm.org/customelements/api)
+[![DevDependencies Status](http://img.shields.io/david/dev/customelements/api.svg?style=flat)](https://david-dm.org/customelements/api#info=devDependencies)
 
 > An interface to consume and update data on [ElasticSearch](https://www.elastic.co/products/elasticsearch).
 
@@ -23,7 +23,7 @@ Searches for a specific term and returns a paginated result.
 | perPage | number | 30 | Items per page |
 
 ```bash
-curl -X GET search.customelements.io
+curl -X GET api.customelements.io
 ```
 
 ```js
@@ -54,7 +54,7 @@ curl -X GET search.customelements.io
 Requests `fetch.customelements.io` and then update ElasticSearch's data.
 
 ```bash
-curl -X PUT search.customelements.io -H "Authorization: dXNlcjpwYXNz"
+curl -X PUT api.customelements.io -H "Authorization: dXNlcjpwYXNz"
 ```
 
 Where `dXNlcjpwYXNz` is actually a secret API token.
@@ -70,7 +70,7 @@ TODO
 Finds repository by id.
 
 ```bash
-curl -X GET search.customelements.io/id/1
+curl -X GET api.customelements.io/id/1
 ```
 
 ```js
@@ -93,7 +93,7 @@ curl -X GET search.customelements.io/id/1
 Creates repository by id.
 
 ```bash
-curl -X POST search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
+curl -X POST api.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
 Where `dXNlcjpwYXNz` is actually a secret API token.
@@ -111,7 +111,7 @@ Where `dXNlcjpwYXNz` is actually a secret API token.
 Updates repository by id.
 
 ```bash
-curl -X PUT search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
+curl -X PUT api.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
 Where `dXNlcjpwYXNz` is actually a secret API token.
@@ -129,7 +129,7 @@ Where `dXNlcjpwYXNz` is actually a secret API token.
 Deletes repository by id.
 
 ```bash
-curl -X DELETE search.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
+curl -X DELETE api.customelements.io/id/1 -H "Authorization: dXNlcjpwYXNz"
 ```
 
 Where `dXNlcjpwYXNz` is actually a secret API token.
@@ -147,7 +147,7 @@ Where `dXNlcjpwYXNz` is actually a secret API token.
 Finds repository by owner and repo.
 
 ```bash
-curl -X GET search.customelements.io/name/zenorocha/voice-elements
+curl -X GET api.customelements.io/name/zenorocha/voice-elements
 ```
 
 ```js
@@ -170,7 +170,7 @@ curl -X GET search.customelements.io/name/zenorocha/voice-elements
 Finds repositories by owner.
 
 ```bash
-curl -X GET search.customelements.io/owner/zenorocha
+curl -X GET api.customelements.io/owner/zenorocha
 ```
 
 ```js
