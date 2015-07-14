@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var boom = require('boom');
-var es = require('../configs/es');
-var fetch = require('../utils/fetch');
+var es = require('../../configs/es');
+var fetch = require('../../utils/fetch');
 
 function controller(request, reply) {
     fetch('http://fetch.customelements.io/repos')

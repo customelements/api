@@ -1,13 +1,13 @@
 module.exports = [
     {
         method: 'GET',
-        path: '/',
-        handler: require('./controllers/get.js')
+        path: '/repos',
+        handler: require('./controllers/repos/get.js')
     },
     {
         method: 'PUT',
-        path: '/',
-        handler: require('./controllers/put.js')
+        path: '/repos',
+        handler: require('./controllers/repos/put.js')
     },
     {
         method: 'GET',

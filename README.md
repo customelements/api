@@ -12,7 +12,7 @@ Built with [Node](http://nodejs.org/) and [Hapi](http://hapijs.com/). Hosted on 
 
 > Note: This API is not versioned and may be changed at any moment. Use at your own risk.
 
-### GET `/`
+### GET `/repos`
 
 Searches for a specific term and returns a paginated result.
 
@@ -49,7 +49,7 @@ curl -X GET search.customelements.io
 
 ---
 
-### PUT `/`
+### PUT `/repos`
 
 Requests `fetch.customelements.io` and then update ElasticSearch's data.
 

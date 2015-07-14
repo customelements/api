@@ -1,5 +1,5 @@
 var boom = require('boom');
-var es = require('../configs/es');
+var es = require('../../configs/es');
 var joi = require('joi');
 
 function controller(request, reply) {
