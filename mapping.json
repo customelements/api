@@ -35,6 +35,16 @@
             },
             "forks_count": {
                 "type": "long"
+            },
+            "q": {
+                "properties": {
+                    "alternate": {
+                        "type": "string"
+                    },
+                    "q": {
+                        "type": "string"
+                    }
+                }
             }
         }
     }
