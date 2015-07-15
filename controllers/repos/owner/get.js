@@ -56,15 +56,20 @@ controller.find = function(params) {
         };
 
         es.search(options).then(function(body) {
-            var results = [];
+            if (body.hits.total > 0) {
+                var results = [];
 
-            body.hits.hits.forEach(function(entry){
-                results.push(entry._source);
-            });
+                body.hits.hits.forEach(function(entry){
+                    results.push(entry._source);
+                });
 
-            resolve(results);
+                resolve(results);
+            }
+            else {
+                reject(boom.notFound('No results found for: ' + params.owner));
+            }
         }, function (error) {
-            reject(boom.create(error.status, error.message));
+            reject(boom.wrap(error));
         });
     });
 };

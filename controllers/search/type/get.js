@@ -68,7 +68,7 @@ controller.find = function(params) {
                 results: results
             });
         }, function (error) {
-            reject(boom.create(error.status, error.message));
+            reject(boom.wrap(error));
         });
     });
 };

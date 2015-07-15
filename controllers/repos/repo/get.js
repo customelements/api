@@ -59,9 +59,14 @@ controller.find = function(params) {
         };
 
         es.search(options).then(function(body) {
-            resolve(body.hits.hits[0]._source);
+            if (body.hits.total > 0) {
+                resolve(body.hits.hits[0]._source);
+            }
+            else {
+                reject(boom.notFound('No results found for: ' + params.owner));
+            }
         }, function (error) {
-            reject(boom.create(error.status, error.message));
+            reject(boom.wrap(error));
         });
     });
 };
