@@ -5,11 +5,11 @@ var es = require('../../../configs/es');
 function controller(request, reply) {
     controller.validate(request)
         .then(function(result) {
-            console.log('[#validate] Done with promise');
+            request.log('[#validate] Done with promise');
             return controller.find(result);
         })
         .then(function(result) {
-            console.log('[#find] Done with promise');
+            request.log('[#find] Done with promise');
             return reply(result);
         })
         .catch(reply);

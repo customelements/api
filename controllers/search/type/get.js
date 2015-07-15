@@ -5,9 +5,11 @@ var joi = require('joi');
 function controller(request, reply) {
     controller.validate(request)
         .then(function(result) {
+            request.log('[#validate] Done with promise');
             return controller.find(result);
         })
         .then(function(result) {
+            request.log('[#find] Done with promise');
             return reply(result);
         })
         .catch(reply);
