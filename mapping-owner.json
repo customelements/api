@@ -5,12 +5,9 @@
                 "type": "long"
             },
             "login": {
-                "type": "multi_field",
+                "type": "string",
                 "fields": {
-                    "searchable": {
-                        "type": "string"
-                    },
-                    "original": {
+                    "raw": {
                         "type": "string",
                         "index": "not_analyzed"
                     }

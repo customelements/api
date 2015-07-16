@@ -46,7 +46,7 @@ controller.find = function(params) {
                         filter: {
                             bool: {
                                 must: [
-                                    { term: { 'login.original': params.owner }}
+                                    { term: { 'login.raw': params.owner }}
                                 ]
                             }
                         }

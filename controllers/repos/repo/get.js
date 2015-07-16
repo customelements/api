@@ -48,8 +48,8 @@ controller.find = function(params) {
                         filter: {
                             bool: {
                                 must: [
-                                    { term: { 'owner.login': params.owner.toLowerCase() }},
-                                    { term: { 'name.original': params.repo }}
+                                    { term: { 'owner.login.raw': params.owner }},
+                                    { term: { 'name.raw': params.repo }}
                                 ]
                             }
                         }
