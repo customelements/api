@@ -50,10 +50,13 @@ controller.find = function(params) {
         var options = {
             index: 'customelements',
             type: params.type.substr(0, params.type.length - 1),
-            q: params.q + '*',
             size: params.perPage,
             from: (params.page - 1) * params.perPage,
             sort: params.sort + ':' + params.order
+        };
+
+        if ( params.q ) {
+            options.q = params.q + '*'
         };
 
         es.search(options).then(function(body) {
