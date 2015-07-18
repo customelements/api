@@ -1,6 +1,11 @@
 module.exports = [
     {
         method: 'GET',
+        path: '/',
+        handler: require('./controllers/get.js')
+    },
+    {
+        method: 'GET',
         path: '/search/{type}',
         handler: require('./controllers/search/type/get.js')
     },
