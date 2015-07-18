@@ -18,6 +18,18 @@ lab.experiment('Get a single owner', function() {
         });
     });
 
+    lab.test('should return HTTP 404 status code (No user)', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/owners/keppelen'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 404);
+            done();
+        });
+    });
+
     lab.test('have property "name" in response', function(done) {
         var options = {
             method: 'GET',
@@ -40,6 +52,44 @@ lab.experiment('List owner repositories', function() {
 
         server.inject(options, function(response) {
             assert.equal(response.statusCode, 200);
+            done();
+        });
+    });
+
+    lab.test('should return HTTP 404 status code (No results for user X)', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/repos/keppelen'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 404);
+            done();
+        });
+    });
+});
+
+lab.experiment('Get a single repository', function() {
+    lab.test('should return HTTP 200 status code', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/repos/robdodson/mark-down'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 200);
+            done();
+        });
+    });
+
+    lab.test('should return HTTP 200 status code', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/repos/robdodson/mark'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 404);
             done();
         });
     });
