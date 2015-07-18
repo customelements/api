@@ -43,7 +43,7 @@ lab.experiment('Get a single owner', function() {
     });
 });
 
-lab.experiment('List owner repositories', function() {
+lab.experiment('Get a list owner repositories', function() {
     lab.test('should return HTTP 200 status code', function(done) {
         var options = {
             method: 'GET',
@@ -90,6 +90,34 @@ lab.experiment('Get a single repository', function() {
 
         server.inject(options, function(response) {
             assert.equal(response.statusCode, 404);
+            done();
+        });
+    });
+});
+
+lab.experiment('Search owners or repositories', function() {
+    lab.test('should return HTTP 200 status code', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/search/owners'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 200);
+            done();
+        });
+    });
+});
+
+lab.experiment('Search repos or repositories', function() {
+    lab.test('should return HTTP 200 status code', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/search/repos'
+        };
+
+        server.inject(options, function(response) {
+            assert.equal(response.statusCode, 200);
             done();
         });
     });
