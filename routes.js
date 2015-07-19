@@ -6,21 +6,6 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/search',
-        handler: require('./controllers/search/get.js')
-    },
-    {
-        method: 'GET',
-        path: '/search/{type}',
-        handler: require('./controllers/search/type/get.js')
-    },
-    {
-        method: 'PUT',
-        path: '/sync/{type}',
-        handler: require('./controllers/sync/type/put.js')
-    },
-    {
-        method: 'GET',
         path: '/owners',
         handler: require('./controllers/owners/get.js')
     },
@@ -43,5 +28,15 @@ module.exports = [
         method: 'GET',
         path: '/repos/{owner}/{repo}',
         handler: require('./controllers/repos/repo/get.js')
+    },
+    {
+        method: 'GET',
+        path: '/search',
+        handler: require('./controllers/search/get.js')
+    },
+    {
+        method: 'GET',
+        path: '/search/{type}',
+        handler: require('./controllers/search/type/get.js')
     }
 ];
