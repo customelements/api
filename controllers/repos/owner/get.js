@@ -40,6 +40,7 @@ controller.find = function(params) {
         var options = {
             index: 'customelements',
             type: 'repo',
+            size: 200,
             body: {
                 query: {
                     filtered: {
