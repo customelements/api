@@ -28,4 +28,24 @@ lab.experiment('Get a single repository', function() {
             done();
         });
     });
+
+    lab.test('should have all the required properties', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/repos/robdodson/mark-down'
+        };
+
+        server.inject(options, function(response) {
+            expect(response.result).to.have.all.keys([
+                'id', 'name', 'owner', 'description', 'created_at',
+                'pushed_at', 'stargazers_count', 'forks_count'
+            ]);
+
+            expect(response.result.owner).to.have.all.keys([
+                'id', 'login'
+            ]);
+
+            done();
+        });
+    });
 });

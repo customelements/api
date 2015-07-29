@@ -29,14 +29,18 @@ lab.experiment('Get a single owner', function() {
         });
     });
 
-    lab.test('should have property "name" in response', function(done) {
+    lab.test('should have all the required properties', function(done) {
         var options = {
             method: 'GET',
             url: '/owners/robdodson'
         };
 
         server.inject(options, function(response) {
-            expect(response.result).to.have.property('name');
+            expect(response.result).to.have.all.keys([
+                'id', 'login', 'avatar_url', 'type',
+                'name', 'company', 'blog', 'location', 'email'
+            ]);
+
             done();
         });
     });
