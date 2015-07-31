@@ -56,7 +56,8 @@ controller.find = function(params) {
         };
 
         if ( params.q ) {
-            options.q = params.q + '*'
+            params.q = params.q.replace(/-/g, ' ') + '*';
+            options.q = params.q
         };
 
         es.search(options).then(function(body) {
