@@ -13,6 +13,9 @@
                     }
                 }
             },
+            "description": {
+                "type": "string"
+            },
             "owner": {
                 "properties": {
                     "id": {
@@ -29,9 +32,6 @@
                     }
                 }
             },
-            "description": {
-                "type": "string"
-            },
             "created_at": {
                 "type": "date",
                 "format": "dateOptionalTime"
@@ -40,11 +40,31 @@
                 "type": "date",
                 "format": "dateOptionalTime"
             },
+            "forks_count": {
+                "type": "long"
+            },
             "stargazers_count": {
                 "type": "long"
             },
-            "forks_count": {
-                "type": "long"
+            "bower": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "keywords": {
+                        "type": "string"
+                    }
+                }
+            },
+            "npm": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "keywords": {
+                        "type": "string"
+                    }
+                }
             },
             "q": {
                 "properties": {
