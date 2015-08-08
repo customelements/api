@@ -38,11 +38,15 @@ lab.experiment('List owner repositories', function() {
         server.inject(options, function(response) {
             expect(response.result[0]).to.have.all.keys([
                 'id', 'name', 'owner', 'description', 'created_at',
-                'pushed_at', 'stargazers_count', 'forks_count'
+                'pushed_at', 'stargazers_count', 'forks_count', 'bower'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
                 'id', 'login'
+            ]);
+            
+            expect(response.result[0].bower).to.have.all.keys([
+                'keywords', 'name'
             ]);
 
             done();
