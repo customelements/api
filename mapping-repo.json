@@ -58,7 +58,8 @@
                         "type": "string"
                     },
                     "dependencies": {
-                        "type": "string"
+                        "type": "object",
+                        "enabled": false
                     }
                 }
             },
@@ -71,7 +72,8 @@
                         "type": "string"
                     },
                     "dependencies": {
-                        "type": "string"
+                        "type": "object",
+                        "enabled": false
                     }
                 }
             },
