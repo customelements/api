@@ -46,12 +46,18 @@
             "stargazers_count": {
                 "type": "long"
             },
+            "default_branch": {
+                "type": "string"
+            },
             "bower": {
                 "properties": {
                     "name": {
                         "type": "string"
                     },
                     "keywords": {
+                        "type": "string"
+                    },
+                    "dependencies": {
                         "type": "string"
                     }
                 }
@@ -62,6 +68,9 @@
                         "type": "string"
                     },
                     "keywords": {
+                        "type": "string"
+                    },
+                    "dependencies": {
                         "type": "string"
                     }
                 }

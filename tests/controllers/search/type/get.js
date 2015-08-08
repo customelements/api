@@ -85,8 +85,8 @@ lab.experiment('Search repositories', function() {
 
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at',
-                'pushed_at', 'forks_count', 'stargazers_count', 'bower'
+                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
+                'forks_count', 'stargazers_count', 'default_branch', 'bower'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
@@ -94,7 +94,7 @@ lab.experiment('Search repositories', function() {
             ]);
 
             expect(response.result.results[0].bower).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
@@ -109,8 +109,8 @@ lab.experiment('Search repositories', function() {
 
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at',
-                'pushed_at', 'forks_count', 'stargazers_count', 'npm'
+                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
+                'forks_count', 'stargazers_count', 'default_branch', 'npm'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
@@ -118,7 +118,7 @@ lab.experiment('Search repositories', function() {
             ]);
 
             expect(response.result.results[0].npm).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
