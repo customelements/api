@@ -29,7 +29,7 @@ lab.experiment('Get a single repository', function() {
         });
     });
 
-    lab.test('should have all the required properties', function(done) {
+    lab.test('should have all the required properties (bower)', function(done) {
         var options = {
             method: 'GET',
             url: '/repos/robdodson/mark-down'
@@ -38,25 +38,12 @@ lab.experiment('Get a single repository', function() {
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at',
-                'pushed_at', 'forks_count', 'stargazers_count'
+                'pushed_at', 'forks_count', 'stargazers_count', 'bower'
             ]);
 
             expect(response.result.owner).to.have.all.keys([
                 'id', 'login'
             ]);
-
-            done();
-        });
-    });
-
-    lab.test('should have bower optional properties', function(done) {
-        var options = {
-            method: 'GET',
-            url: '/repos/robdodson/mark-down'
-        };
-
-        server.inject(options, function(response) {
-            expect(response.result).to.have.all.keys(['bower']);
 
             expect(response.result.bower).to.have.all.keys([
                 'name', 'keywords'
@@ -66,14 +53,21 @@ lab.experiment('Get a single repository', function() {
         });
     });
 
-    lab.test('should have npm optional properties', function(done) {
+    lab.test('should have all the required properties (npm)', function(done) {
         var options = {
             method: 'GET',
-            url: '/repos/rnicholus/ajax-form'
+            url: '/repos/ruyadorno/polymer-simple-slider'
         };
 
         server.inject(options, function(response) {
-            expect(response.result).to.have.all.keys(['npm']);
+            expect(response.result).to.have.all.keys([
+                'id', 'name', 'description', 'owner', 'created_at',
+                'pushed_at', 'forks_count', 'stargazers_count', 'npm'
+            ]);
+
+            expect(response.result.owner).to.have.all.keys([
+                'id', 'login'
+            ]);
 
             expect(response.result.npm).to.have.all.keys([
                 'name', 'keywords'

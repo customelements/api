@@ -77,7 +77,7 @@ lab.experiment('Search repositories', function() {
         });
     });
 
-    lab.test('should have all the required properties for repo', function(done) {
+    lab.test('should have all the required properties for repo (bower)', function(done) {
         var options = {
             method: 'GET',
             url: '/search/repos?q=13277619'
@@ -86,25 +86,12 @@ lab.experiment('Search repositories', function() {
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at',
-                'pushed_at', 'forks_count', 'stargazers_count'
+                'pushed_at', 'forks_count', 'stargazers_count', 'bower'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
                 'id', 'login'
             ]);
-
-            done();
-        });
-    });
-
-    lab.test('should have bower optional properties for repo', function(done) {
-        var options = {
-            method: 'GET',
-            url: '/search/repos?q=13277619'
-        };
-
-        server.inject(options, function(response) {
-            expect(response.result.results[0]).to.have.all.keys(['bower']);
 
             expect(response.result.results[0].bower).to.have.all.keys([
                 'name', 'keywords'
@@ -114,14 +101,21 @@ lab.experiment('Search repositories', function() {
         });
     });
 
-    lab.test('should have npm optional properties for repo', function(done) {
+    lab.test('should have all the required properties for repo (npm)', function(done) {
         var options = {
             method: 'GET',
-            url: '/search/repos?q=21294814'
+            url: '/search/repos?q=17549238'
         };
 
         server.inject(options, function(response) {
-            expect(response.result.results[0]).to.have.all.keys(['npm']);
+            expect(response.result.results[0]).to.have.all.keys([
+                'id', 'name', 'description', 'owner', 'created_at',
+                'pushed_at', 'forks_count', 'stargazers_count', 'npm'
+            ]);
+
+            expect(response.result.results[0].owner).to.have.all.keys([
+                'id', 'login'
+            ]);
 
             expect(response.result.results[0].npm).to.have.all.keys([
                 'name', 'keywords'

@@ -29,7 +29,7 @@ lab.experiment('List owner repositories', function() {
         });
     });
 
-    lab.test('should have all the required properties', function(done) {
+    lab.test('should have all the required properties (bower)', function(done) {
         var options = {
             method: 'GET',
             url: '/repos/robdodson'
@@ -37,16 +37,44 @@ lab.experiment('List owner repositories', function() {
 
         server.inject(options, function(response) {
             expect(response.result[0]).to.have.all.keys([
-                'id', 'name', 'owner', 'description', 'created_at',
+                'id', 'name', 'description', 'owner', 'created_at',
                 'pushed_at', 'stargazers_count', 'forks_count', 'bower'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
                 'id', 'login'
             ]);
-            
+
             expect(response.result[0].bower).to.have.all.keys([
                 'keywords', 'name'
+            ]);
+
+            expect(response.result[0].bower).to.have.all.keys([
+                'name', 'keywords'
+            ]);
+
+            done();
+        });
+    });
+
+    lab.test('should have all the required properties (npm)', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/repos/ruyadorno'
+        };
+
+        server.inject(options, function(response) {
+            expect(response.result[0]).to.have.all.keys([
+                'id', 'name', 'description', 'owner', 'created_at',
+                'pushed_at', 'stargazers_count', 'forks_count', 'npm'
+            ]);
+
+            expect(response.result[0].owner).to.have.all.keys([
+                'id', 'login'
+            ]);
+
+            expect(response.result[0].npm).to.have.all.keys([
+                'name', 'keywords'
             ]);
 
             done();
