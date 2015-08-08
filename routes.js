@@ -38,5 +38,15 @@ module.exports = [
         method: 'GET',
         path: '/search/{type}',
         handler: require('./controllers/search/type/get.js')
+    },
+    {
+        method: 'GET',
+        path: '/count',
+        handler: require('./controllers/count/get.js')
+    },
+    {
+        method: 'GET',
+        path: '/count/{type}',
+        handler: require('./controllers/count/type/get.js')
     }
 ];

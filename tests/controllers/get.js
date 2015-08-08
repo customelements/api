@@ -25,8 +25,8 @@ lab.experiment('List endpoints', function() {
 
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
-                'owner_url', 'owner_repos_url', 'owner_search_url',
-                'repo_url', 'repo_search_url'
+                'owner_url', 'owner_count_url', 'owner_repos_url', 'owner_search_url',
+                'repo_url', 'repo_count_url', 'repo_search_url'
             ]);
 
             done();
