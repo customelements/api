@@ -80,17 +80,51 @@ lab.experiment('Search repositories', function() {
     lab.test('should have all the required properties for repo', function(done) {
         var options = {
             method: 'GET',
-            url: '/search/repos?q=mark'
+            url: '/search/repos?q=13277619'
         };
 
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
-                'id', 'name', 'owner', 'description', 'created_at',
-                'pushed_at', 'stargazers_count', 'forks_count'
+                'id', 'name', 'description', 'owner', 'created_at',
+                'pushed_at', 'forks_count', 'stargazers_count'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
                 'id', 'login'
+            ]);
+
+            done();
+        });
+    });
+
+    lab.test('should have bower optional properties for repo', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/search/repos?q=13277619'
+        };
+
+        server.inject(options, function(response) {
+            expect(response.result.results[0]).to.have.all.keys(['bower']);
+
+            expect(response.result.results[0].bower).to.have.all.keys([
+                'name', 'keywords'
+            ]);
+
+            done();
+        });
+    });
+
+    lab.test('should have npm optional properties for repo', function(done) {
+        var options = {
+            method: 'GET',
+            url: '/search/repos?q=21294814'
+        };
+
+        server.inject(options, function(response) {
+            expect(response.result.results[0]).to.have.all.keys(['npm']);
+
+            expect(response.result.results[0].npm).to.have.all.keys([
+                'name', 'keywords'
             ]);
 
             done();
