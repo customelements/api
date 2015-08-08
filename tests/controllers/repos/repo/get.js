@@ -46,7 +46,7 @@ lab.experiment('Get a single repository', function() {
             ]);
 
             expect(response.result.bower).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
@@ -70,7 +70,7 @@ lab.experiment('Get a single repository', function() {
             ]);
 
             expect(response.result.npm).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();

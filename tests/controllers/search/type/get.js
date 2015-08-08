@@ -94,7 +94,7 @@ lab.experiment('Search repositories', function() {
             ]);
 
             expect(response.result.results[0].bower).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
@@ -118,7 +118,7 @@ lab.experiment('Search repositories', function() {
             ]);
 
             expect(response.result.results[0].npm).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();

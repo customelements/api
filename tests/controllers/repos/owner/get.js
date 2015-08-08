@@ -46,11 +46,7 @@ lab.experiment('List owner repositories', function() {
             ]);
 
             expect(response.result[0].bower).to.have.all.keys([
-                'keywords', 'name'
-            ]);
-
-            expect(response.result[0].bower).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
@@ -74,7 +70,7 @@ lab.experiment('List owner repositories', function() {
             ]);
 
             expect(response.result[0].npm).to.have.all.keys([
-                'name', 'keywords'
+                'name', 'keywords', 'dependencies'
             ]);
 
             done();
