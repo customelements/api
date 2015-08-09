@@ -23,7 +23,8 @@ controller.validate = function(request) {
             page: request.query.page,
             perPage: request.query.perPage,
             sort: request.query.sort,
-            order: request.query.order
+            order: request.query.order,
+            keywords: request.query.keywords
         };
 
         var schema = {
@@ -32,7 +33,8 @@ controller.validate = function(request) {
             page: joi.number().min(1).default(1),
             perPage: joi.number().min(1).max(1500).default(30),
             sort: joi.string().default('id'),
-            order: joi.string().default('asc')
+            order: joi.string().default('asc'),
+            keywords: joi.string()
         };
 
         joi.validate(params, schema, function(err, result) {
@@ -55,10 +57,13 @@ controller.find = function(params) {
             sort: params.sort + ':' + params.order
         };
 
-        if ( params.q ) {
-            params.q = params.q.replace(/-/g, ' ') + '*';
-            options.q = params.q
-        };
+        if (params.q) {
+            options.q = params.q.replace(/-/g, ' ') + '*';
+        }
+
+        if (params.keywords) {
+            options.body = controller.keywordsQuery(params.keywords);
+        }
 
         es.search(options).then(function(body) {
             var results = [];
@@ -77,6 +82,39 @@ controller.find = function(params) {
             reject(boom.wrap(error));
         });
     });
+};
+
+controller.keywordsQuery = function(keywords) {
+    var queryTerms = [];
+
+    keywords = keywords.split(',');
+
+    for (var i = 0; i < keywords.length; i++) {
+        queryTerms.push(
+            {
+                term: {
+                    'bower.keywords.raw': keywords[i]
+                }
+            },
+            {
+                term: {
+                    'npm.keywords.raw': keywords[i]
+                }
+            }
+        );
+    }
+
+    return {
+        query: {
+            filtered: {
+                filter: {
+                    bool: {
+                        should: queryTerms
+                    }
+                }
+            }
+        }
+    };
 };
 
 module.exports = controller;
