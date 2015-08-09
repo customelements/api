@@ -38,7 +38,8 @@ lab.experiment('List owner repositories', function() {
         server.inject(options, function(response) {
             expect(response.result[0]).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'stargazers_count', 'forks_count', 'default_branch', 'bower'
+                'stargazers_count', 'forks_count', 'default_branch', 'homepage',
+                'bower'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
@@ -46,7 +47,7 @@ lab.experiment('List owner repositories', function() {
             ]);
 
             expect(response.result[0].bower).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();
@@ -62,7 +63,8 @@ lab.experiment('List owner repositories', function() {
         server.inject(options, function(response) {
             expect(response.result[0]).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'stargazers_count', 'forks_count', 'default_branch', 'npm'
+                'stargazers_count', 'forks_count', 'default_branch', 'homepage',
+                'npm'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
@@ -70,7 +72,7 @@ lab.experiment('List owner repositories', function() {
             ]);
 
             expect(response.result[0].npm).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();

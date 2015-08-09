@@ -49,6 +49,9 @@
             "default_branch": {
                 "type": "string"
             },
+            "homepage": {
+                "type": "string"
+            },
             "bower": {
                 "properties": {
                     "name": {
@@ -60,6 +63,9 @@
                     "dependencies": {
                         "type": "object",
                         "enabled": false
+                    },
+                    "homepage": {
+                        "type": "string"
                     }
                 }
             },
@@ -74,6 +80,9 @@
                     "dependencies": {
                         "type": "object",
                         "enabled": false
+                    },
+                    "homepage": {
+                        "type": "string"
                     }
                 }
             },

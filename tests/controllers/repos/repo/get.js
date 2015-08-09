@@ -38,7 +38,8 @@ lab.experiment('Get a single repository', function() {
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'bower'
+                'forks_count', 'stargazers_count', 'default_branch', 'homepage',
+                'bower'
             ]);
 
             expect(response.result.owner).to.have.all.keys([
@@ -46,7 +47,7 @@ lab.experiment('Get a single repository', function() {
             ]);
 
             expect(response.result.bower).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();
@@ -62,7 +63,8 @@ lab.experiment('Get a single repository', function() {
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
                 'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'npm'
+                'forks_count', 'stargazers_count', 'default_branch', 'homepage',
+                'npm'
             ]);
 
             expect(response.result.owner).to.have.all.keys([
@@ -70,7 +72,7 @@ lab.experiment('Get a single repository', function() {
             ]);
 
             expect(response.result.npm).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();
