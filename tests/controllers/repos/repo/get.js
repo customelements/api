@@ -37,16 +37,18 @@ lab.experiment('Get a single repository', function() {
 
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'bower'
+                'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
+                'pushed_at', 'size', 'forks_count', 'open_issues_count',
+                'stargazers_count', 'subscribers_count', 'default_branch',
+                'homepage', 'has_issues',  'has_pages', 'bower'
             ]);
 
             expect(response.result.owner).to.have.all.keys([
-                'id', 'login'
+                'id', 'login', 'avatar_url'
             ]);
 
             expect(response.result.bower).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();
@@ -61,16 +63,18 @@ lab.experiment('Get a single repository', function() {
 
         server.inject(options, function(response) {
             expect(response.result).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'npm'
+                'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
+                'pushed_at', 'size', 'forks_count', 'open_issues_count',
+                'stargazers_count', 'subscribers_count', 'default_branch',
+                'homepage', 'has_issues',  'has_pages', 'npm'
             ]);
 
             expect(response.result.owner).to.have.all.keys([
-                'id', 'login'
+                'id', 'login', 'avatar_url'
             ]);
 
             expect(response.result.npm).to.have.all.keys([
-                'name', 'keywords', 'dependencies'
+                'name', 'keywords', 'dependencies', 'homepage'
             ]);
 
             done();
