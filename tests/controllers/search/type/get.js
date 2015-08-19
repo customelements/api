@@ -85,13 +85,14 @@ lab.experiment('Search repositories', function() {
 
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'homepage',
-                'bower'
+                'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
+                'pushed_at', 'size', 'forks_count', 'open_issues_count',
+                'stargazers_count', 'subscribers_count', 'default_branch',
+                'homepage', 'has_issues',  'has_pages', 'bower'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
-                'id', 'login'
+                'id', 'login', 'avatar_url'
             ]);
 
             expect(response.result.results[0].bower).to.have.all.keys([
@@ -110,13 +111,14 @@ lab.experiment('Search repositories', function() {
 
         server.inject(options, function(response) {
             expect(response.result.results[0]).to.have.all.keys([
-                'id', 'name', 'description', 'owner', 'created_at', 'pushed_at',
-                'forks_count', 'stargazers_count', 'default_branch', 'homepage',
-                'npm'
+                'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
+                'pushed_at', 'size', 'forks_count', 'open_issues_count',
+                'stargazers_count', 'subscribers_count', 'default_branch',
+                'homepage', 'has_issues',  'has_pages', 'npm'
             ]);
 
             expect(response.result.results[0].owner).to.have.all.keys([
-                'id', 'login'
+                'id', 'login', 'avatar_url'
             ]);
 
             expect(response.result.results[0].npm).to.have.all.keys([

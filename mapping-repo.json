@@ -29,6 +29,9 @@
                                 "index": "not_analyzed"
                             }
                         }
+                    },
+                    "avatar_url": {
+                        "type": "string"
                     }
                 }
             },
@@ -36,14 +39,27 @@
                 "type": "date",
                 "format": "dateOptionalTime"
             },
+            "updated_at": {
+                "type": "date",
+                "format": "dateOptionalTime"
+            },
             "pushed_at": {
                 "type": "date",
                 "format": "dateOptionalTime"
             },
+            "size": {
+                "type": "long"
+            },
             "forks_count": {
                 "type": "long"
             },
+            "open_issues_count": {
+                "type": "long"
+            },
             "stargazers_count": {
+                "type": "long"
+            },
+            "subscribers_count": {
                 "type": "long"
             },
             "default_branch": {
@@ -51,6 +67,12 @@
             },
             "homepage": {
                 "type": "string"
+            },
+            "has_issues": {
+                "type": "boolean"
+            },
+            "has_pages": {
+                "type": "boolean"
             },
             "bower": {
                 "properties": {
