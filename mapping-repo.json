@@ -74,6 +74,10 @@
             "has_pages": {
                 "type": "boolean"
             },
+            "readme": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
             "bower": {
                 "properties": {
                     "name": {
