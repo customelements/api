@@ -40,7 +40,7 @@ lab.experiment('List owner repositories', function() {
                 'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
                 'pushed_at', 'size', 'forks_count', 'open_issues_count',
                 'stargazers_count', 'subscribers_count', 'default_branch',
-                'homepage', 'has_issues',  'has_pages', 'bower'
+                'homepage', 'has_issues',  'has_pages', 'readme', 'bower'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
@@ -66,7 +66,7 @@ lab.experiment('List owner repositories', function() {
                 'id', 'name', 'description', 'owner', 'created_at', 'updated_at',
                 'pushed_at', 'size', 'forks_count', 'open_issues_count',
                 'stargazers_count', 'subscribers_count', 'default_branch',
-                'homepage', 'has_issues',  'has_pages', 'npm'
+                'homepage', 'has_issues',  'has_pages', 'readme', 'npm'
             ]);
 
             expect(response.result[0].owner).to.have.all.keys([
