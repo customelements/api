@@ -93,8 +93,12 @@
                         }
                     },
                     "dependencies": {
-                        "type": "object",
-                        "enabled": false
+                        "name": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "string"
+                        }
                     },
                     "homepage": {
                         "type": "string"
@@ -116,8 +120,12 @@
                         }
                     },
                     "dependencies": {
-                        "type": "object",
-                        "enabled": false
+                        "name": {
+                            "type": "string"
+                        },
+                        "version": {
+                            "type": "string"
+                        }
                     },
                     "homepage": {
                         "type": "string"
