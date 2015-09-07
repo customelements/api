@@ -54,7 +54,10 @@ controller.find = function(params) {
             type: params.type.substr(0, params.type.length - 1),
             size: params.perPage,
             from: (params.page - 1) * params.perPage,
-            sort: params.sort + ':' + params.order
+            sort: params.sort + ':' + params.order,
+            _sourceInclude: [
+                'id', 'name', 'description', 'owner', 'forks_count', 'stargazers_count'
+            ]
         };
 
         if (params.q) {

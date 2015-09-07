@@ -41,6 +41,9 @@ controller.find = function(params) {
             index: 'customelements',
             type: 'repo',
             size: 200,
+            _sourceInclude: [
+                'id', 'name', 'description', 'owner', 'forks_count', 'stargazers_count'
+            ],
             body: {
                 query: {
                     filtered: {
